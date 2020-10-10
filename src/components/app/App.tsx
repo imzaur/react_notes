@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Container, Row, Col} from 'reactstrap';
+import {Container} from 'reactstrap';
 import Header from '../header';
 import Note from '../note';
 import AddForm from '../form';
@@ -9,7 +9,7 @@ interface AppState {
   notes: string[];
 }
 
-export default class App extends Component<{}, AppState> {
+export default class App extends Component<any, AppState> {
   constructor(props: AppState) {
     super(props);
     this.state = {
@@ -29,18 +29,16 @@ export default class App extends Component<{}, AppState> {
   }
 
   render () {
+    const {notes} = this.state;
+
     return (
       <div className='app'>
         <Container>
             <Header/>
         </Container>
         <Container>
-          <Row>
-            <Col style={{padding: '25px'}}>
-              <AddForm addNote={this.addNote}/>
-            </Col>
-          </Row>
-          <Note/>
+          <AddForm addNote={this.addNote}/>
+          <Note notes={notes}/>
         </Container>
       </div>
     );
