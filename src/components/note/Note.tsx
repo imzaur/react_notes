@@ -4,7 +4,8 @@ import { Button, Col, UncontrolledTooltip, Modal, ModalBody, ModalFooter, ModalH
 
 interface NoteProps {
     notes: string[],
-    deleteNote: Function
+    deleteNote: Function,
+    updateNote: Function
 }
 
 export default class Note extends Component<NoteProps, any> {
@@ -30,9 +31,6 @@ export default class Note extends Component<NoteProps, any> {
 
     saveNote = (e: any) => {
         this.setState({note: e.target.value})
-    }
-    changeNote = (index: number) => {
-        this.setState({note: this.state.notes[index]})
     }
 
     render() {
@@ -63,10 +61,12 @@ export default class Note extends Component<NoteProps, any> {
                         <Modal isOpen={modal} toggle={() => this.toggle(index)}>
                             <ModalHeader toggle={() => this.toggle(index)}>Редактировать</ModalHeader>
                                 <ModalBody>
-                                <Input value={note}/>
+                                <Input value={note} onChange={this.saveNote}/>
                                 </ModalBody>
                                 <ModalFooter>
-                                <Button color="primary" onClick={() => this.toggle(index)} >Подтвердить</Button>
+                                <Button color="primary" onClick={() => {
+                                    this.props.updateNote(index, note);
+                                    this.toggle(index);}} >Подтвердить</Button>
                                 <Button color="secondary" onClick={() => this.toggle(index)}>Отмена</Button>
                                 </ModalFooter>
                         </Modal>
