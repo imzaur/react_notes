@@ -14,8 +14,11 @@ export default class AddForm extends Component<AddFormProps, any> {
     }
     saveNote = (e: any) => {
         this.setState({note: e.target.value})
-        this.setState({note: ''})
     
+    }
+    onClick(note: string) {
+        this.props.addNote(note);
+        this.setState({note: ''});
     }
 
     render() {
@@ -24,9 +27,9 @@ export default class AddForm extends Component<AddFormProps, any> {
             <Row>
                 <Col style={{padding: '25px'}}>
                     <InputGroup>
-                        <Input placeholder="Type here" onChange={this.saveNote}/>
+                        <Input placeholder="Type here" onChange={this.saveNote} value={this.state.note}/>
                         <InputGroupAddon addonType="append">
-                        <Button color="secondary" onClick={() => this.props.addNote(note)}>Add Note</Button>
+                        <Button color="secondary" onClick={() => this.onClick(note)}>Add Note</Button>
                         </InputGroupAddon>
                     </InputGroup>
                 </Col>

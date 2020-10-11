@@ -6,7 +6,7 @@ export default class Header extends Component {
     render() {
         return (
           <div>
-          <p>Notes</p>
+          <p>React Notes</p>
           <Nav>
             <NavItem>
               <NavLink href="#">Link</NavLink>

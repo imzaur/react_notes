@@ -16,17 +16,22 @@ export default class App extends Component<any, AppState> {
       notes: []
     }
     this.addNote = this.addNote.bind(this);
+    this.deleteNote = this.deleteNote.bind(this);
   }
 
   addNote(note: string){
     this.setState(({notes}) => {
       const newNotes = [...notes, note]
-      console.log(`NOTES ${newNotes}`);
       return {
         notes: newNotes
       }
     })
   }
+  deleteNote = (index: number) => {
+    const {notes} = this.state;
+    const newNotes = notes.filter((_: string, i: number) => i !== index);
+    this.setState({notes: newNotes});
+}
 
   render () {
     const {notes} = this.state;
@@ -38,7 +43,7 @@ export default class App extends Component<any, AppState> {
         </Container>
         <Container>
           <AddForm addNote={this.addNote}/>
-          <Note notes={notes}/>
+          <Note notes={notes} deleteNote={this.deleteNote}/>
         </Container>
       </div>
     );
