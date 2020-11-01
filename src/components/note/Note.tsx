@@ -12,12 +12,11 @@ export default class Note extends Component<NoteProps, any> {
     constructor(props: NoteProps) {
         super(props);
         this.state = {
-            notes: null,
+            notes: [],
             modal: false,
             note: ''
         }
     }
-
     componentDidUpdate(prevProps: NoteProps){
         if (this.props.notes !== prevProps.notes){
             this.setState({notes: this.props.notes})

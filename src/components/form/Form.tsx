@@ -14,7 +14,6 @@ export default class AddForm extends Component<AddFormProps, any> {
     }
     saveNote = (e: any) => {
         this.setState({note: e.target.value})
-    
     }
     onClick(note: string) {
         this.props.addNote(note);
